@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGIS - Tool for Urban Forestry</title>
+    <link rel="stylesheet" href="ol.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="chart.css">
+    <link rel="stylesheet" href="form.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <img src="resources/images/logo.jpg" alt="" style="width: inherit; height: inherit; vertical-align: middle;">
+            <span style="vertical-align: middle;">WebGIS - Tool for Urban Forestry</span>
+        </div>
+        <div class="right">
+            <button onclick="togglePopup()">Open Form</button>
+            <div id="popupForm" class="popup">
+                <button onclick="togglePopup()">Close</button>
+                <h2>Tree Details Form</h2>
+                <form id="treeForm" onsubmit="return validateForm()">
+                    <div>
+                        <label for="treeName">Tree Name:</label>
+                        <input type="text" id="treeName" name="treeName" required>
+                    </div>
+                    <div>
+                        <label for="treeHeight">Tree Height (in meters):</label>
+                        <input type="number" id="treeHeight" name="treeHeight" min="0" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="treeAge">Tree Age (in years):</label>
+                        <input type="number" id="treeAge" name="treeAge" min="0" required>
+                    </div>
+                    <div>
+                        <label for="latitude">Latitude:</label>
+                        <input type="text" id="latitude" name="latitude" readonly>
+                    </div>
+                    <div>
+                        <label for="longitude">Longitude:</label>
+                        <input type="text" id="longitude" name="longitude" readonly>
+                    </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+                <div id="errorMessages" class="error"></div>
+            </div>
+            <div id="overlay" class="overlay" onclick="togglePopup()"></div>
+            <div id="map" class="map"></div>
+            <div id="chart-container" class="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+            <div id="mouse-position" class="mouse-position"></div>
+        </div>
+    </div>
+    
+    
+    <script src="ol.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
+
+    <div id="popup" class="popup">
+        <div class="popup-content"></div>
+    </div>
+    
+</body>
+</html>
